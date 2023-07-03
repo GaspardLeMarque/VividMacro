@@ -12,10 +12,13 @@ fred = Fred(api_key=os.environ.get('API_KEY'))
 # Create an app
 app = Flask(__name__)
 
+# Define ASCII data as a dataframe
+ascii_data = parser.df
+
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', columns=ascii_data.columns)
 
 
 @app.route('/plot', methods=['POST'])
@@ -51,7 +54,6 @@ def plot():
     elif 'column_name' in request.form:
         # Handle the request from the second form
         column_name = request.form['column_name']
-        ascii_data = parser.df
 
         if ascii_data is None:
             return "Failed to retrieve data for the plot."
@@ -75,7 +77,7 @@ def plot():
     fig_json = fig.to_json()
 
     # Pass the figure JSON to the template for rendering
-    return render_template('plot.html', fig_json=fig_json)
+    return render_template('plot.html', fig_json=fig_json, columns=ascii_data.columns)
 
 
 # Run server
