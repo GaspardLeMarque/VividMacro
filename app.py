@@ -1,4 +1,5 @@
 import os
+import re
 from dotenv import load_dotenv
 from flask import Flask, render_template, request
 import plotly.graph_objects as go
@@ -23,8 +24,8 @@ def plot():
     if 'series_id' in request.form:
         # Handle the request from the first form
         series_id = request.form['series_id']
+        series_content = fred.search(series_id).T
         fred_data = fred.get_series(series_id)
-
         if fred_data is None:
             return "Failed to retrieve data from the FRED API."
 
@@ -32,9 +33,20 @@ def plot():
         fig = go.Figure(data=go.Scatter(x=fred_data.index, y=fred_data))
 
         fig.update_layout(
-            title=series_id,
+            title=series_content.loc['title'][series_id],
             xaxis=dict(title='Date'),
-            yaxis=dict(title='Value'),
+            yaxis=dict(title=series_content.loc['units'][series_id]),
+            annotations=[
+                dict(
+                    text=series_content.loc['notes'][series_id],
+                    x=0.5,
+                    y=-0.3,
+                    xref="paper",
+                    yref="paper",
+                    showarrow=False,
+                    font=dict(size=14)
+                )
+            ],
             showlegend=False
         )
     elif 'column_name' in request.form:
