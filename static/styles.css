@@ -1,0 +1,40 @@
+/* styles.css */
+
+/* Add basic styling to the body */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  height: 100vh;
+}
+
+/* Add styling to specific elements */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+form {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.plot-container {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.plot-container h1 {
+  text-align: center;
+  margin: 20px 0;
+}

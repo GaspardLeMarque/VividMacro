@@ -5,12 +5,15 @@
     <meta http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plot Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <!DOCTYPE html>
 <body>
-    <h1>Plot</h1>
-    <div id="plot"></div>
+    <div class="plot-container">
+        <h1>Plot</h1>
+        <div id="plot"></div>
+    </div>
     <script>
         var figJson = {{ fig_json|safe }};
         Plotly.newPlot('plot', figJson.data, figJson.layout);

@@ -5,24 +5,27 @@
     <meta http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vivid Macro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
-    <h1>Submit Form</h1>
-    <form action="/plot" method="post">
-        <label for="series_id">Series ID:</label>
-        <input type="text" id="series_id" name="series_id">
-        <button type="submit">Use FRED</button>
-    </form>
+    <div class="form-container">
+    <h1>Choose a data source</h1>
+        <form action="/plot" method="post">
+            <label for="series_id">Series ID:</label>
+            <input type="text" id="series_id" name="series_id">
+            <button type="submit">Use FRED</button>
+        </form>
     <br>
-    <form action="/plot" method="post">
-        <label for="column_name">Column name:</label>
-            <select id="column_name" name="column_name">
-                {% for col in columns %}
-                    <option value="{{ col }}" SELECTED>{{ col }}</option>
-                {% endfor %}
-            </select>
-        <button type="submit">Use ASCII</button>
-    </form>
+        <form action="/plot" method="post">
+            <label for="column_name">Series name:</label>
+                <select id="column_name" name="column_name">
+                    {% for col in columns %}
+                        <option value="{{ col }}" SELECTED>{{ col }}</option>
+                    {% endfor %}
+                </select>
+            <button type="submit">Use ASCII</button>
+        </form>
+    </div>
 </body>
 </html>
