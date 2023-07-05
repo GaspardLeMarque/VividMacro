@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from flask import Flask, render_template, request
 import plotly.graph_objects as go
 from fredapi import Fred
-import parser
+import filter_ascii
 
 # Parse an .env file
 load_dotenv()
@@ -13,7 +13,7 @@ fred = Fred(api_key=os.environ.get('API_KEY'))
 app = Flask(__name__)
 
 # Define ASCII data as a dataframe
-ascii_data = parser.df
+ascii_data = filter_ascii.filtered_df
 
 
 @app.route('/')
