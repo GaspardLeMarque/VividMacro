@@ -9,23 +9,30 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
-    <div class="form-container">
-    <h1>Choose a data source</h1>
-        <form action="/plot" method="post">
-            <label for="series_id">Series ID:</label>
-            <input type="text" id="series_id" name="series_id">
-            <button type="submit">Use FRED</button>
-        </form>
-    <br>
-        <form action="/plot" method="post">
-            <label for="column_name">Series name:</label>
-                <select id="column_name" name="column_name">
-                    {% for col in columns %}
-                        <option value="{{ col }}" SELECTED>{{ col }}</option>
-                    {% endfor %}
-                </select>
-            <button type="submit">Use ASCII</button>
-        </form>
-    </div>
+    <main>
+        <center>
+            <h1>Choose a preferable data source</h1>
+            <div class="form fred-form">
+                <form action="/plot" method="post">
+                    <h2>Use Federal Reserve Economic Data</h2>
+                    <label for="series_id"></label>
+                    <input type="text" id="series_id" name="series_id" placeholder="Type in series ID">
+                    <button type="submit" class="submit-btn">Search</button>
+                </form>
+            </div>
+            <div class="form ascii-form">
+                <form action="/plot" method="post">
+                    <h2>Use Greenbook Data</h2>
+                    <label for="column_name"></label>
+                        <select id="column_name" name="column_name">
+                            {% for col in columns %}
+                                <option value="{{ col }}" SELECTED>{{ col }}</option>
+                            {% endfor %}
+                        </select>
+                    <button type="submit" class="submit-btn">Search</button>
+                </form>
+            </div>
+        </center>
+    </main>
 </body>
 </html>

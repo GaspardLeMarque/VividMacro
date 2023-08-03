@@ -1,36 +1,111 @@
-/* styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
 
 /* Add basic styling to the body */
 body {
-  font-family: Arial, sans-serif;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
   background-color: #f2f2f2;
   height: 100vh;
+  text-align: center;
 }
 
 /* Add styling to specific elements */
-.form-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-
-h1 {
+h1, h2 {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 30px;
   margin-bottom: 20px;
 }
 
-form {
-  text-align: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
+.form {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.897);
+    width: 50%;
+    border-radius: 1em;
+    margin: 30px 10px 50px 10px;
+    padding: 10px 0 30px 0;
+    flex-direction: column;
+    text-align: center;
+  }
+
+/* Set a style for the input field */
+input[type=text] {
+  width: 60%;
+  padding: 15px;
+  margin: 20px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  border-radius: 0.3em;
+}
+
+input[type=text]:focus {
+  background-color: #eee;
+  outline: none;
+  box-shadow: 0 0 0 2px #2AB5FF;
+}
+
+/* Set a style for the submit button */
+.submit-btn {
+  background-color: #2AB5FF;
+  font-size: 20px;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 0.3em;
+  cursor: pointer;
+  width: 50%;
+  opacity: 0.9;
+  transition: background 0.5s ease;
+}
+
+.submit-btn:hover {
+  background: #2A9DFF;
+  transition: transform 500ms ease;
+}
+
+/* Styles for the select element */
+.form select#column_name {
+  width: 60%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+  border-radius: 0.3em;
+  cursor: pointer;
+}
+
+.form select#column_name option {
+  font-size: 16px;
+  color: #333;
+  padding: 8px;
+  background-color: #fff;
+}
+
+.form select#column_name option:hover {
+  background-color: #e6e6e6;
+}
+
+.form select#column_name {
+  transition: border-color 0.3s ease;
+}
+
+.form select#column_name:focus {
+  border-color: #2AB5FF;
+  outline: none;
 }
 
 .plot-container {
   height: 100vh;
-  margin: 0;
   padding: 0;
 }
 
