@@ -32,6 +32,17 @@
                     <button type="submit" class="submit-btn">Search</button>
                 </form>
             </div>
+            <h1>Analyze FRED macroeconomic data</h1>
+            <div class="form var-form">
+                <form action="/perform_var" method="post" >
+                    <h2>Vector Autoregression with Monthly Series</h2>
+                    <label for="series1_id"></label>
+                    <input type="text" id="series1_id" name="series1_id" placeholder="Type in first series ID"><br><br>
+                    <label for="series2_id"></label>
+                    <input type="text" id="series2_id" name="series2_id" placeholder="Type in second series ID"><br><br>
+                    <button type="submit" class="submit-btn">Build ACF plot</button>
+                </form>
+            </div>
         </center>
     </main>
 </body>

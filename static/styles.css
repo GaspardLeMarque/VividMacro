@@ -103,13 +103,3 @@ input[type=text]:focus {
   border-color: #2AB5FF;
   outline: none;
 }
-
-.plot-container {
-  height: 100vh;
-  padding: 0;
-}
-
-.plot-container h1 {
-  text-align: center;
-  margin: 20px 0;
-}

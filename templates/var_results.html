@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ACF Plot</title>
+</head>
+<body>
+    <h2 align="center">VAR Analysis Results</h2>
+    {% if error_message %}
+        <div id="error-message" align="center">
+            <p>{{ error_message }}</p>
+        </div>
+    {% endif %}
+    <div id="plotly-graph">{{ plot | safe }}</div>
+</body>
+</html>

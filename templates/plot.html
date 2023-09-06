@@ -10,10 +10,8 @@
 </head>
 <!DOCTYPE html>
 <body>
-    <div class="plot-container">
-        <h1>Plot</h1>
-        <div id="plot"></div>
-    </div>
+    <h1 align="center">Plot</h1>
+    <div id="plot"></div>
     <script>
         var figJson = {{ fig_json|safe }};
         Plotly.newPlot('plot', figJson.data, figJson.layout);
