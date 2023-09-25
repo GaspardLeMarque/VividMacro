@@ -5,45 +5,104 @@
     <meta http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vivid Macro</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
     <main>
-        <center>
-            <h1>Choose a preferable data source</h1>
-            <div class="form fred-form">
-                <form action="/plot" method="post">
-                    <h2>Use Federal Reserve Economic Data</h2>
-                    <label for="series_id"></label>
-                    <input type="text" id="series_id" name="series_id" placeholder="Type in series ID">
-                    <button type="submit" class="submit-btn">Search</button>
-                </form>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark justify-content-center align-items-start">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#" style="font-size: 26px;">Vivid Macro</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-center align-items-start" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#fred-form" style="font-size: 20px;">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#var-form" style="font-size: 20px;">Analytics</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="form ascii-form">
-                <form action="/plot" method="post">
-                    <h2>Use Greenbook Data</h2>
-                    <label for="column_name"></label>
-                        <select id="column_name" name="column_name">
-                            {% for col in columns %}
-                                <option value="{{ col }}" SELECTED>{{ col }}</option>
-                            {% endfor %}
-                        </select>
-                    <button type="submit" class="submit-btn">Search</button>
-                </form>
+        </nav>
+
+        <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+            <div class="row align-items-center g-lg-5 py-5 mt-3" id="fred-form">
+                <div class="col-lg-7 text-start text-lg-start">
+                    <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Federal Reserve Macroeconomic Data</h1>
+                    <p class="col-lg-10 fs-4">Choose among thousands of U.S. and International time series from the trusted source for economic data since 1991.</p>
+                </div>
+                <div class="col-md-10 mx-auto col-lg-5">
+                    <form action="/plot" method="post" class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="series_id" name="series_id" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Type in series ID">
+                        </div>
+                        <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Search</button>
+                        <hr class="my-4">
+                        <small class="text-body-secondary">By clicking Search, you agree to the terms of use.</small>
+                    </form>
+                </div>
             </div>
-            <h1>Analyze FRED macroeconomic data</h1>
-            <div class="form var-form">
-                <form action="/perform_var" method="post" >
-                    <h2>Vector Autoregression with Monthly Series</h2>
-                    <label for="series1_id"></label>
-                    <input type="text" id="series1_id" name="series1_id" placeholder="Type in first series ID"><br><br>
-                    <label for="series2_id"></label>
-                    <input type="text" id="series2_id" name="series2_id" placeholder="Type in second series ID"><br><br>
-                    <button type="submit" class="submit-btn">Build ACF plot</button>
-                </form>
+
+            <div class="row align-items-center g-lg-5 py-5 mt-3" id="ascii-form">
+                <div class="col-lg-7 text-start text-lg-start">
+                    <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Greenbook Data</h1>
+                    <p class="col-lg-10 fs-4">Choose among all the vintage time series that were published in a Greenbook in 1978-1998 period.</p>
+                </div>
+                <div class="col-md-10 mx-auto col-lg-5">
+                    <form action="/plot" method="post" class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+                        <div class="mb-3">
+                            <select name="column_name" class="form-select">
+                                {% for col in columns %}
+                                    <option value="{{ col }}">{{ col }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Search</button>
+                        <hr class="my-4">
+                        <small class="text-body-secondary">By clicking Search, you agree to the terms of use.</small>
+                    </form>
+                </div>
             </div>
-        </center>
+
+            <div class="row align-items-center g-lg-5 py-5 mt-3" id="var-form">
+                <div class="col-lg-7 text-start text-lg-start">
+                    <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Vector Autoregression</h1>
+                    <p class="col-lg-10 fs-4">Build vector autoregression plots with monthly time series data from the Federal Reserve database.</p>
+                </div>
+                <div class="col-md-10 mx-auto col-lg-5">
+                    <form action="/perform_var" method="post" class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="series1_id" name="series1_id" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Type in first series ID">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="series2_id" name="series2_id" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Type in second series ID">
+                        </div>
+                        <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Build</button>
+                        <hr class="my-4">
+                        <small class="text-body-secondary">By clicking Build, you agree to the terms of use.</small>
+                    </form>
+                </div>
+        </div>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script>
+        // Function for smooth scrolling
+        function scrollToElement(elementId) {
+            var element = document.getElementById(elementId);
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+        // Event listeners for navbar links
+        document.querySelectorAll('.nav-link').forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the default link behavior
+                var targetId = this.getAttribute('href').substring(1); // Get the target element's ID
+                scrollToElement(targetId);
+            });
+        });
+    </script>
 </body>
 </html>

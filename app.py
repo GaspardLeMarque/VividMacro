@@ -29,7 +29,7 @@ def index():
 def plot():
     if 'series_id' in request.form:
         # Handle the request from the first form
-        series_id = request.form['series_id']
+        series_id = request.form['series_id'].upper()
         series_content = fred.search(series_id).T
         fred_data = fred.get_series(series_id)
         if fred_data is None:
@@ -93,8 +93,8 @@ def is_monthly(series_id):
 @app.route('/perform_var', methods=['POST'])
 def perform_var():
     # Get series names from form inputs
-    series1_name = request.form['series1_id']
-    series2_name = request.form['series2_id']
+    series1_name = request.form['series1_id'].upper()
+    series2_name = request.form['series2_id'].upper()
 
     # Check if the series are monthly
     if not (is_monthly(series1_name) and is_monthly(series2_name)):
